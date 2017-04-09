@@ -55,7 +55,7 @@ public class SettingsFragment extends FragmentBase implements OnClickListener{
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		return inflater.inflate(R.layout.fragment_set, container, false);
+		return inflater.inflate(R.layout.activity_set_info, container, false);
 	}
 
 	@Override
@@ -142,7 +142,12 @@ public class SettingsFragment extends FragmentBase implements OnClickListener{
 			startAnimActivity(new Intent(getActivity(),BlackListActivity.class));
 			break;
 		case R.id.layout_info:// 启动到个人资料页面
+		    //setClass函数的第一个参数是一个Context对象
+			//Context是一个类，Activity是Context类的子类，也就是说，所有的Activity对象，都可以向上转型为Context对象
+			//setClass函数的第二个参数是一个Class对象，在当前场景下，应该传入需要被启动的Activity类的class对象
+			//getActivity()：与this基本相同，在fragment中就不能用this只能用getActivity()，两者绑定的关系
 			Intent intent =new Intent(getActivity(),SetMyInfoActivity.class);
+			//putExtra("A",B)中，AB为键值对，第一个参数为键名，第二个参数为键对应的值
 			intent.putExtra("from", "me");
 			startActivity(intent);
 			break;
@@ -194,7 +199,6 @@ public class SettingsFragment extends FragmentBase implements OnClickListener{
 				mSharedUtil.setAllowVibrateEnable(true);
 			}
 			break;
-
 		}
 	}
 

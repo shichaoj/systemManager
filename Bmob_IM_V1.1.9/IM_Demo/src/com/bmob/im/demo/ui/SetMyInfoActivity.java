@@ -550,7 +550,6 @@ public class SetMyInfoActivity extends ActivityBase implements OnClickListener {
 			break;
 		default:
 			break;
-
 		}
 	}
 
