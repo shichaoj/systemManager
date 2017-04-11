@@ -25,7 +25,7 @@ public class User extends BmobChatUser {
 	/**
 	 * //显示数据拼音的首字母
 	 */
-	private String sortLetters;
+	private String sortLetters , name , id;
 	
 	/**
 	 * //性别-true-男
@@ -71,6 +71,12 @@ public class User extends BmobChatUser {
 	}
 	public void setSex(Boolean sex) {
 		this.sex = sex;
+	}
+	public String getName(){
+		return name;
+	}
+	public String getID(){
+		return id;
 	}
 	public String getSortLetters() {
 		return sortLetters;
