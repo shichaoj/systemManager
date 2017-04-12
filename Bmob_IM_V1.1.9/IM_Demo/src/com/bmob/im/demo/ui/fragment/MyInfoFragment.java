@@ -4,6 +4,9 @@ import java.util.List;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -18,16 +21,19 @@ import android.widget.TextView;
 import cn.bmob.im.db.BmobDB;
 import cn.bmob.im.util.BmobLog;
 import cn.bmob.v3.listener.FindListener;
+import cn.bmob.v3.listener.UpdateListener;
 
 import com.bmob.im.demo.R;
 import com.bmob.im.demo.bean.User;
+import com.bmob.im.demo.ui.ChatActivity;
 import com.bmob.im.demo.ui.FragmentBase;
+import com.bmob.im.demo.ui.UpdateInfoActivity;
 import com.bmob.im.demo.util.SharePreferenceUtil;
 
 @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 @SuppressLint({ "SimpleDateFormat", "ClickableViewAccessibility", "InflateParams" })
 public class MyInfoFragment extends FragmentBase implements OnClickListener{
-	TextView tv_set_name, tv_set_number, tv_set_gender , tv_set_id;
+	TextView tv_set_name, tv_set_number, tv_set_gender , tv_set_id, tv_set_department;
 	ImageView iv_set_avator, iv_arraw, iv_nickarraw;
 	LinearLayout layout_all;
 
@@ -67,7 +73,14 @@ public class MyInfoFragment extends FragmentBase implements OnClickListener{
 		tv_set_number=(TextView) findViewById(R.id.tv_set_number);
 		tv_set_name=(TextView) findViewById(R.id.tv_set_name);
 		tv_set_id=(TextView) findViewById(R.id.tv_set_id);
-	
+		tv_set_gender=(TextView) findViewById(R.id.tv_set_gender);
+		tv_set_department=(TextView) findViewById(R.id.tv_set_department);
+		
+		layout_gender = (RelativeLayout) findViewById(R.id.layout_gender);
+		
+		
+		layout_gender.setOnClickListener(this);
+		
 	}
 	
 	private void initMeData() {
@@ -103,6 +116,8 @@ public class MyInfoFragment extends FragmentBase implements OnClickListener{
 		tv_set_number.setText(user.getUsername());	
 		tv_set_name.setText(user.getName());
 		tv_set_id.setText(user.getID());
+		tv_set_department.setText(user.getDepartment());
+		tv_set_gender.setText(user.getSex() == true ? "男" : "女");
 	}
 
 	
@@ -116,7 +131,59 @@ public class MyInfoFragment extends FragmentBase implements OnClickListener{
 	@Override
 	public void onClick(View v) {
 		// TODO 自动生成的方法存根
-		
+		switch (v.getId()) { 
+		case R.id.layout_gender:// 性别
+			showSexChooseDialog();
+			break;
+		}
+	}
+	
+	String[] sexs = new String[]{ "男", "女" };
+	private void showSexChooseDialog() {
+		new AlertDialog.Builder(getActivity())
+		.setTitle("单选框")
+		.setIcon(android.R.drawable.ic_dialog_info)
+		.setSingleChoiceItems(sexs, 0,
+				new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog,
+							int which) {
+						BmobLog.i("点击的是"+sexs[which]);
+						updateInfo(which);
+						dialog.dismiss();
+					}
+				})
+		.setNegativeButton("取消", null)
+		.show();
+	}
+	
+	private void updateInfo(int which) {
+		final User u = new User();
+		if(which==0){
+			u.setSex(true);
+		}else{
+			u.setSex(false);
+		}
+		updateUserData(u,new UpdateListener() {
+
+			@Override
+			public void onSuccess() {
+				// TODO Auto-generated method stub
+				ShowToast("修改成功");
+				tv_set_gender.setText(u.getSex() == true ? "男" : "女");
+			}
+
+			@Override
+			public void onFailure(int arg0, String arg1) {
+				// TODO Auto-generated method stub
+				ShowToast("onFailure:" + arg1);
+			}
+		});
+	}
+	
+	private void updateUserData(User user,UpdateListener listener){
+		User current = (User) userManager.getCurrentUser(User.class);
+		user.setObjectId(current.getObjectId());
+		user.update(getActivity(),listener);
 	}
 
 }
