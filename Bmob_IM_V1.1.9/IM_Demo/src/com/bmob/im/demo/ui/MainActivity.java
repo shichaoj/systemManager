@@ -25,6 +25,7 @@ import com.bmob.im.demo.R;
 import com.bmob.im.demo.ui.fragment.ContactFragment;
 import com.bmob.im.demo.ui.fragment.MyInfoFragment;
 import com.bmob.im.demo.ui.fragment.RecentFragment;
+import com.bmob.im.demo.ui.fragment.ReturnFragment;
 import com.bmob.im.demo.ui.fragment.SettingsFragment;
 
 /**
@@ -41,6 +42,7 @@ public class MainActivity extends ActivityBase implements EventListener{
 	private RecentFragment recentFragment;
 	//private SettingsFragment settingFragment;
 	private MyInfoFragment myInfoFragment;
+	private ReturnFragment returnFragment;
 	private Fragment[] fragments;
 	private int index;
 	private int currentTabIndex;
@@ -67,21 +69,22 @@ public class MainActivity extends ActivityBase implements EventListener{
 		mTabs[1] = (Button) findViewById(R.id.btn_contract);
 		mTabs[2] = (Button) findViewById(R.id.btn_set);
 		iv_recent_tips = (ImageView)findViewById(R.id.iv_recent_tips);
-		iv_contact_tips = (ImageView)findViewById(R.id.iv_contact_tips);
+		iv_contact_tips = (ImageView)findViewById(R.id.iv_recent_tips);
 		//把第一个tab设为选中状态
 		mTabs[0].setSelected(true);
 	}
 	
 	private void initTab(){
-		contactFragment = new ContactFragment();
+		//contactFragment = new ContactFragment();
 		recentFragment = new RecentFragment();
 		myInfoFragment = new MyInfoFragment();
+		returnFragment = new ReturnFragment();
 		//settingFragment = new SettingsFragment();
 		//fragments = new Fragment[] {recentFragment, contactFragment, settingFragment };
-		fragments = new Fragment[] {recentFragment, contactFragment, myInfoFragment};
+		fragments = new Fragment[] {recentFragment, returnFragment, myInfoFragment};
 		// 添加显示第一个fragment
 		getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, recentFragment).
-			add(R.id.fragment_container, contactFragment).hide(contactFragment).show(recentFragment).commit();
+			add(R.id.fragment_container, returnFragment).hide(returnFragment).show(recentFragment).commit();
 	}
 	
 	

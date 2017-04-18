@@ -48,11 +48,11 @@ public class RecentFragment extends FragmentBase implements OnItemClickListener,
 	}
 	
 	private void initView(){
-		initTopBarForOnlyTitle("ª·ª∞");
+		initTopBarForOnlyTitle("ΩË”√");
 		listview = (ListView)findViewById(R.id.list);
 		listview.setOnItemClickListener(this);
 		listview.setOnItemLongClickListener(this);
-		adapter = new MessageRecentAdapter(getActivity(), R.layout.item_conversation, BmobDB.create(getActivity()).queryRecents());
+		adapter = new MessageRecentAdapter(getActivity(), R.layout.item_borrow, BmobDB.create(getActivity()).queryRecents());
 		listview.setAdapter(adapter);
 		
 		mClearEditText = (ClearEditText)findViewById(R.id.et_msg_search);

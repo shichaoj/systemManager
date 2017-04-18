@@ -23,10 +23,12 @@ import cn.bmob.im.util.BmobLog;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.UpdateListener;
 
+import com.bmob.im.demo.CustomApplcation;
 import com.bmob.im.demo.R;
 import com.bmob.im.demo.bean.User;
 import com.bmob.im.demo.ui.ChatActivity;
 import com.bmob.im.demo.ui.FragmentBase;
+import com.bmob.im.demo.ui.LoginActivity;
 import com.bmob.im.demo.ui.UpdateInfoActivity;
 import com.bmob.im.demo.util.SharePreferenceUtil;
 
@@ -34,7 +36,7 @@ import com.bmob.im.demo.util.SharePreferenceUtil;
 @SuppressLint({ "SimpleDateFormat", "ClickableViewAccessibility", "InflateParams" })
 public class MyInfoFragment extends FragmentBase implements OnClickListener{
 	TextView tv_set_name, tv_set_number, tv_set_gender , tv_set_id, tv_set_department;
-	ImageView iv_set_avator, iv_arraw, iv_nickarraw;
+	Button btn_logout;
 	LinearLayout layout_all;
 
 	Button btn_chat, btn_back, btn_add_friend;
@@ -69,16 +71,18 @@ public class MyInfoFragment extends FragmentBase implements OnClickListener{
 
 	private void initView() {
 		// TODO 自动生成的方法存根
-		initTopBarForOnlyTitle("个人信息");
+		initTopBarForOnlyTitle("个人信息（普通）");
 		tv_set_number=(TextView) findViewById(R.id.tv_set_number);
 		tv_set_name=(TextView) findViewById(R.id.tv_set_name);
 		tv_set_id=(TextView) findViewById(R.id.tv_set_id);
 		tv_set_gender=(TextView) findViewById(R.id.tv_set_gender);
 		tv_set_department=(TextView) findViewById(R.id.tv_set_department);
 		
+		btn_logout = (Button) findViewById(R.id.btn_logout);
+		
 		layout_gender = (RelativeLayout) findViewById(R.id.layout_gender);
 		
-		
+		btn_logout.setOnClickListener(this);
 		layout_gender.setOnClickListener(this);
 		
 	}
@@ -134,6 +138,11 @@ public class MyInfoFragment extends FragmentBase implements OnClickListener{
 		switch (v.getId()) { 
 		case R.id.layout_gender:// 性别
 			showSexChooseDialog();
+			break;
+		case R.id.btn_logout:
+			CustomApplcation.getInstance().logout();
+			getActivity().finish();
+			startActivity(new Intent(getActivity(), LoginActivity.class));
 			break;
 		}
 	}

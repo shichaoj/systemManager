@@ -102,7 +102,7 @@ public class ContactFragment extends FragmentBase implements OnItemClickListener
 	private void init() {
 		characterParser = CharacterParser.getInstance();
 		pinyinComparator = new PinyinComparator();
-		initTopBarForRight("联系人", R.drawable.base_action_bar_add_bg_selector,
+		initTopBarForRight("归还", R.drawable.base_action_bar_add_bg_selector,
 				new onRightImageButtonClickListener() {
 
 					@Override

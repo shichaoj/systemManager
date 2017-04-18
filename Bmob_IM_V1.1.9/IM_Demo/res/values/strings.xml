@@ -17,8 +17,11 @@
     <string name="message_search_hint">搜索&#8230;</string>
     
     <string name="main_tab_recent">会话</string>
+    <string name="main_tab_borrow">借用</string>
     <string name="main_tab_contact">联系人</string>
     <string name="mian_tab_set">设置</string>
+    <string name="mian_tab_myinfo">个人信息</string>
+    <string name="mian_tab_return">归还</string>
     
     <string name="xlistview_header_hint_normal">下拉刷新</string>
     <string name="xlistview_header_hint_ready">松开刷新数据</string>

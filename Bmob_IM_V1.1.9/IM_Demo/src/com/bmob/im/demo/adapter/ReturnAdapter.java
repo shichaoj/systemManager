@@ -28,13 +28,13 @@ import com.nostra13.universalimageloader.core.ImageLoader;
   * @author smile
   * @date 2014-6-7 下午2:34:10
   */
-public class MessageRecentAdapter extends ArrayAdapter<BmobRecent> implements Filterable{
+public class ReturnAdapter extends ArrayAdapter<BmobRecent> implements Filterable{
 	
 	private LayoutInflater inflater;
 	private List<BmobRecent> mData;
 	private Context mContext;
 	
-	public MessageRecentAdapter(Context context, int textViewResourceId, List<BmobRecent> objects) {
+	public ReturnAdapter(Context context, int textViewResourceId, List<BmobRecent> objects) {
 		super(context, textViewResourceId, objects);
 		inflater = LayoutInflater.from(context);
 		this.mContext = context;
@@ -63,7 +63,7 @@ public class MessageRecentAdapter extends ArrayAdapter<BmobRecent> implements Fi
 		}
 		
 		tv_recent_name.setText(item.getUserName());
-		tv_recent_time.setText("日期："+TimeUtil.getChatTime(item.getTime()));
+		tv_recent_time.setText("日期："+TimeUtil.getReturnTime(item.getTime()));
 		//显示内容
 		if(item.getType()==BmobConfig.TYPE_TEXT){
 			SpannableString spannableString = FaceTextUtils.toSpannableString(mContext, item.getMessage());

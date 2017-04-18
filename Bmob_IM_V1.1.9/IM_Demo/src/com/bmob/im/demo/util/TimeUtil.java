@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import android.annotation.SuppressLint;
+import android.util.Log;
 
 @SuppressLint("SimpleDateFormat")
 public class TimeUtil {
@@ -177,6 +178,34 @@ public class TimeUtil {
 			break;
 		}
 
+		return result;
+	}
+	
+	public static String getReturnTime(long timesamp) {
+		//借期三个月
+		timesamp+=3*MONTH;
+		long clearTime = timesamp*1000;
+		String result = "";
+		SimpleDateFormat sdf = new SimpleDateFormat("dd");
+		Date today = new Date(System.currentTimeMillis());
+		Date otherDay = new Date(clearTime);
+		int temp = Integer.parseInt(sdf.format(otherDay)) - Integer.parseInt(sdf.format(today));
+
+		switch (temp) {
+		case 0:
+			result = "今天 " + getHourAndMin(clearTime);
+			break;
+		case 1:
+			result = "明天 " + getHourAndMin(clearTime);
+			break;
+		case 2:
+			result = "后天 " + getHourAndMin(clearTime);
+			break;
+
+		default:
+			result = getTime(clearTime);
+			break;
+		}
 		return result;
 	}
 }
