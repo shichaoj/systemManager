@@ -46,7 +46,7 @@ public class ReturnAdapter extends ArrayAdapter<BmobRecent> implements Filterabl
 		// TODO Auto-generated method stub
 		final BmobRecent item = mData.get(position);
 		if (convertView == null) {
-			convertView = inflater.inflate(R.layout.item_borrow, parent, false);
+			convertView = inflater.inflate(R.layout.item_return, parent, false);
 		}
 		ImageView iv_recent_avatar = ViewHolder.get(convertView, R.id.iv_recent_avatar);
 		TextView tv_recent_name = ViewHolder.get(convertView, R.id.tv_recent_name);

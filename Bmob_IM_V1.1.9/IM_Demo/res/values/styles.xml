@@ -112,6 +112,10 @@
     <style name="Smile.Button.logout" parent="Smile.TextView._White">
         <item name="android:background">@drawable/btn_logout_selector</item>
     </style>
+    
+    <style name="Smile.Button.renew" parent="Smile.TextView._White">
+        <item name="android:background">@drawable/btn_renew_selector</item>
+    </style>
 
     <style name="Smile.TextView._Orange">
         <item name="android:textColor">@color/dialog_color_title</item>

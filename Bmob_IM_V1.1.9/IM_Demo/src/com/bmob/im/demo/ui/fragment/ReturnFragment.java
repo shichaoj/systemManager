@@ -45,7 +45,7 @@ public class ReturnFragment extends FragmentBase implements OnItemClickListener,
 		listview = (ListView)findViewById(R.id.list);
 		listview.setOnItemClickListener(this);
 		listview.setOnItemLongClickListener(this);
-		adapter = new ReturnAdapter(getActivity(), R.layout.item_borrow, BmobDB.create(getActivity()).queryRecents());
+		adapter = new ReturnAdapter(getActivity(), R.layout.item_return, BmobDB.create(getActivity()).queryRecents());
 		listview.setAdapter(adapter);
 		
 		mClearEditText = (ClearEditText)findViewById(R.id.et_msg_search);
