@@ -13,7 +13,7 @@ import cn.bmob.im.task.BRequest;
 import cn.bmob.v3.listener.CountListener;
 import cn.bmob.v3.listener.FindListener;
 
-import com.bmob.im.demo.R;
+import com.bmob.im.demo.manager.R;
 import com.bmob.im.demo.adapter.NearPeopleAdapter;
 import com.bmob.im.demo.bean.User;
 import com.bmob.im.demo.util.CollectionUtils;

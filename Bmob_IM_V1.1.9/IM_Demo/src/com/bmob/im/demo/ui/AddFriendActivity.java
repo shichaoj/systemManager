@@ -18,7 +18,7 @@ import cn.bmob.im.util.BmobLog;
 import cn.bmob.v3.listener.CountListener;
 import cn.bmob.v3.listener.FindListener;
 
-import com.bmob.im.demo.R;
+import com.bmob.im.demo.manager.R;
 import com.bmob.im.demo.adapter.AddFriendAdapter;
 import com.bmob.im.demo.util.CollectionUtils;
 import com.bmob.im.demo.view.xlist.XListView;

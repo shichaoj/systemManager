@@ -14,7 +14,7 @@ import android.widget.TextView;
 import cn.bmob.im.BmobUserManager;
 
 import com.bmob.im.demo.CustomApplcation;
-import com.bmob.im.demo.R;
+import com.bmob.im.demo.manager.R;
 import com.bmob.im.demo.ui.BlackListActivity;
 import com.bmob.im.demo.ui.FragmentBase;
 import com.bmob.im.demo.ui.LoginActivity;

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.bmob.im.demo"
+    package="com.bmob.im.demo.manager"
     android:versionCode="15"
     android:versionName="1.1.5" >
 
@@ -99,7 +99,7 @@
             android:launchMode="singleTask"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         
-        <activity android:name=".ui.LoginActivity" />
+        <activity android:name="com.bmob.im.demo.ui.LoginActivity" />
         
         <activity android:name=".ui.LocationActivity" />
         

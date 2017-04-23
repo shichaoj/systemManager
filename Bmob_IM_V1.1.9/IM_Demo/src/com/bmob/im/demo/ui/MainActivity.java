@@ -21,7 +21,7 @@ import cn.bmob.im.inteface.EventListener;
 
 import com.bmob.im.demo.CustomApplcation;
 import com.bmob.im.demo.MyMessageReceiver;
-import com.bmob.im.demo.R;
+import com.bmob.im.demo.manager.R;
 import com.bmob.im.demo.ui.fragment.ContactFragment;
 import com.bmob.im.demo.ui.fragment.MyInfoFragment;
 import com.bmob.im.demo.ui.fragment.RecentFragment;

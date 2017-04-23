@@ -16,7 +16,7 @@ import android.widget.TextView;
 import cn.bmob.im.util.BmobLog;
 import cn.bmob.v3.listener.SaveListener;
 
-import com.bmob.im.demo.R;
+import com.bmob.im.demo.manager.R;
 import com.bmob.im.demo.bean.User;
 import com.bmob.im.demo.config.BmobConstants;
 import com.bmob.im.demo.util.CommonUtils;

@@ -24,7 +24,7 @@ import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.UpdateListener;
 
 import com.bmob.im.demo.CustomApplcation;
-import com.bmob.im.demo.R;
+import com.bmob.im.demo.manager.R;
 import com.bmob.im.demo.bean.User;
 import com.bmob.im.demo.ui.ChatActivity;
 import com.bmob.im.demo.ui.FragmentBase;
@@ -71,7 +71,7 @@ public class MyInfoFragment extends FragmentBase implements OnClickListener{
 
 	private void initView() {
 		// TODO 自动生成的方法存根
-		initTopBarForOnlyTitle("个人信息（普通）");
+		initTopBarForOnlyTitle("个人信息（管理）");
 		tv_set_number=(TextView) findViewById(R.id.tv_set_number);
 		tv_set_name=(TextView) findViewById(R.id.tv_set_name);
 		tv_set_id=(TextView) findViewById(R.id.tv_set_id);

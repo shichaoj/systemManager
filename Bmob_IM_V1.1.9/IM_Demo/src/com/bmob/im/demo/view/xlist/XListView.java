@@ -13,7 +13,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Scroller;
 
-import com.bmob.im.demo.R;
+import com.bmob.im.demo.manager.R;
 
 /** 单个的下拉刷新控件
  * @ClassName: XListView

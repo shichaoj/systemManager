@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.bmob.im.demo.R;
+import com.bmob.im.demo.manager.R;
 
 public class XListViewFooter extends LinearLayout{
 	public final static int STATE_NORMAL = 0;

@@ -15,7 +15,7 @@ import cn.bmob.im.bean.BmobRecent;
 import cn.bmob.im.config.BmobConfig;
 import cn.bmob.im.db.BmobDB;
 
-import com.bmob.im.demo.R;
+import com.bmob.im.demo.manager.R;
 import com.bmob.im.demo.adapter.base.ViewHolder;
 import com.bmob.im.demo.util.FaceTextUtils;
 import com.bmob.im.demo.util.ImageLoadOptions;

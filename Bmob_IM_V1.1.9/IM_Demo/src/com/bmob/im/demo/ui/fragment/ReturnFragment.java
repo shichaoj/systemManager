@@ -12,7 +12,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import cn.bmob.im.db.BmobDB;
 
-import com.bmob.im.demo.R;
+import com.bmob.im.demo.manager.R;
 import com.bmob.im.demo.adapter.MessageRecentAdapter;
 import com.bmob.im.demo.adapter.ReturnAdapter;
 import com.bmob.im.demo.ui.FragmentBase;

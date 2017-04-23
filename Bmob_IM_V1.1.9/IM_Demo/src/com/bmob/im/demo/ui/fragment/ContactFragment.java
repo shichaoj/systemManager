@@ -35,7 +35,7 @@ import cn.bmob.im.db.BmobDB;
 import cn.bmob.v3.listener.UpdateListener;
 
 import com.bmob.im.demo.CustomApplcation;
-import com.bmob.im.demo.R;
+import com.bmob.im.demo.manager.R;
 import com.bmob.im.demo.adapter.UserFriendAdapter;
 import com.bmob.im.demo.bean.User;
 import com.bmob.im.demo.ui.AddFriendActivity;

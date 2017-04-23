@@ -58,7 +58,7 @@ import cn.bmob.im.util.BmobLog;
 import cn.bmob.v3.listener.PushListener;
 
 import com.bmob.im.demo.MyMessageReceiver;
-import com.bmob.im.demo.R;
+import com.bmob.im.demo.manager.R;
 import com.bmob.im.demo.adapter.EmoViewPagerAdapter;
 import com.bmob.im.demo.adapter.EmoteAdapter;
 import com.bmob.im.demo.adapter.MessageChatAdapter;

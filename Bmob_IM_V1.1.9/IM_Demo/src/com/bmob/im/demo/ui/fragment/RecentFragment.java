@@ -1,10 +1,13 @@
 package com.bmob.im.demo.ui.fragment;
 
+import java.util.List;
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,12 +18,18 @@ import android.widget.ListView;
 import cn.bmob.im.bean.BmobChatUser;
 import cn.bmob.im.bean.BmobRecent;
 import cn.bmob.im.db.BmobDB;
+import cn.bmob.im.util.BmobLog;
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.listener.FindListener;
 
-import com.bmob.im.demo.R;
+import com.bmob.im.demo.manager.R;
 import com.bmob.im.demo.adapter.MessageRecentAdapter;
+import com.bmob.im.demo.bean.User;
+import com.bmob.im.demo.ui.AddFriendActivity;
 import com.bmob.im.demo.ui.ChatActivity;
 import com.bmob.im.demo.ui.FragmentBase;
 import com.bmob.im.demo.view.ClearEditText;
+import com.bmob.im.demo.view.HeaderLayout.onRightImageButtonClickListener;
 import com.bmob.im.demo.view.dialog.DialogTips;
 
 /** 最近会话
@@ -36,6 +45,8 @@ public class RecentFragment extends FragmentBase implements OnItemClickListener,
 	ListView listview;
 	
 	MessageRecentAdapter adapter;
+	
+	private List<User> userList;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		return inflater.inflate(R.layout.fragment_recent, container, false);
@@ -48,12 +59,38 @@ public class RecentFragment extends FragmentBase implements OnItemClickListener,
 	}
 	
 	private void initView(){
-		initTopBarForOnlyTitle("借用");
-		listview = (ListView)findViewById(R.id.list);
-		listview.setOnItemClickListener(this);
-		listview.setOnItemLongClickListener(this);
-		adapter = new MessageRecentAdapter(getActivity(), R.layout.item_borrow, BmobDB.create(getActivity()).queryRecents());
-		listview.setAdapter(adapter);
+		
+		BmobQuery<User> query = new BmobQuery<User>();
+		query.addWhereNotEqualTo("username", "shichaor");
+		query.findObjects(getActivity(), new FindListener<User>() {
+		  
+			@Override
+			public void onError(int arg0, String arg1) {
+				// TODO 自动生成的方法存根
+				Log.i("查询username失败",arg1);
+			}
+
+			@Override
+			public void onSuccess(List<User> arg0) {
+				// TODO 自动生成的方法存根
+				userList=arg0;
+				passData(userList);
+				//Log.i("查询username成功",user.getName());
+				//BmobLog.i(user.getName());
+			}
+		});
+		
+		//initTopBarForOnlyTitle("借用");
+		initTopBarForRight("借用", R.drawable.base_action_bar_add_bg_selector,
+				new onRightImageButtonClickListener() {
+
+					@Override
+					public void onClick() {
+						// TODO Auto-generated method stub
+						//startAnimActivity(AddFriendActivity.class);
+					}
+				});
+	
 		
 		mClearEditText = (ClearEditText)findViewById(R.id.et_msg_search);
 		mClearEditText.addTextChangedListener(new TextWatcher() {
@@ -77,6 +114,18 @@ public class RecentFragment extends FragmentBase implements OnItemClickListener,
 		
 	}
 	
+	//数据传输
+	private void passData(List<User> userList){
+		listview = (ListView)findViewById(R.id.list);
+		listview.setOnItemClickListener(this);
+		listview.setOnItemLongClickListener(this);
+		
+		adapter = new MessageRecentAdapter(getActivity(), R.layout.item_borrow, userList);
+		listview.setAdapter(adapter);
+	}
+	
+	
+	
 	/** 删除会话
 	  * deleteRecent
 	  * @param @param recent 
@@ -84,7 +133,7 @@ public class RecentFragment extends FragmentBase implements OnItemClickListener,
 	  * @throws
 	  */
 	private void deleteRecent(BmobRecent recent){
-		adapter.remove(recent);
+		//adapter.remove(recent);
 		BmobDB.create(getActivity()).deleteRecent(recent.getTargetid());
 		BmobDB.create(getActivity()).deleteMessages(recent.getTargetid());
 	}
@@ -93,8 +142,8 @@ public class RecentFragment extends FragmentBase implements OnItemClickListener,
 	public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int position,
 			long arg3) {
 		// TODO Auto-generated method stub
-		BmobRecent recent = adapter.getItem(position);
-		showDeleteDialog(recent);
+		//BmobRecent recent = adapter.getItem(position);
+		//showDeleteDialog(recent);
 		return true;
 	}
 	
@@ -114,18 +163,18 @@ public class RecentFragment extends FragmentBase implements OnItemClickListener,
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
 		// TODO Auto-generated method stub
-		BmobRecent recent = adapter.getItem(position);
+		//BmobRecent recent = adapter.getItem(position);
 		//重置未读消息
-		BmobDB.create(getActivity()).resetUnread(recent.getTargetid());
-		//组装聊天对象
-		BmobChatUser user = new BmobChatUser();
-		user.setAvatar(recent.getAvatar());
-		user.setNick(recent.getNick());
-		user.setUsername(recent.getUserName());
-		user.setObjectId(recent.getTargetid());
-		Intent intent = new Intent(getActivity(), ChatActivity.class);
-		intent.putExtra("user", user);
-		startAnimActivity(intent);
+//		BmobDB.create(getActivity()).resetUnread(recent.getTargetid());
+//		//组装聊天对象
+//		BmobChatUser user = new BmobChatUser();
+//		user.setAvatar(recent.getAvatar());
+//		user.setNick(recent.getNick());
+//		user.setUsername(recent.getUserName());
+//		user.setObjectId(recent.getTargetid());
+//		Intent intent = new Intent(getActivity(), ChatActivity.class);
+//		intent.putExtra("user", user);
+//		startAnimActivity(intent);
 	}
 	
 	private boolean hidden;
@@ -142,8 +191,8 @@ public class RecentFragment extends FragmentBase implements OnItemClickListener,
 		try {
 			getActivity().runOnUiThread(new Runnable() {
 				public void run() {
-					adapter = new MessageRecentAdapter(getActivity(), R.layout.item_conversation, BmobDB.create(getActivity()).queryRecents());
-					listview.setAdapter(adapter);
+					//adapter = new MessageRecentAdapter(getActivity(), R.layout.item_conversation, BmobDB.create(getActivity()).queryRecents());
+					//listview.setAdapter(adapter);
 				}
 			});
 		} catch (Exception e) {

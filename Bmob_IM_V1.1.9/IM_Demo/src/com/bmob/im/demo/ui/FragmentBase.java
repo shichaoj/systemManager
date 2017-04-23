@@ -12,7 +12,7 @@ import cn.bmob.im.BmobUserManager;
 import cn.bmob.im.util.BmobLog;
 
 import com.bmob.im.demo.CustomApplcation;
-import com.bmob.im.demo.R;
+import com.bmob.im.demo.manager.R;
 import com.bmob.im.demo.view.HeaderLayout;
 import com.bmob.im.demo.view.HeaderLayout.HeaderStyle;
 import com.bmob.im.demo.view.HeaderLayout.onLeftImageButtonClickListener;

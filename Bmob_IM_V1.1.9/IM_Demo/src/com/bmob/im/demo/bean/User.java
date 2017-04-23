@@ -25,7 +25,7 @@ public class User extends BmobChatUser {
 	/**
 	 * //显示数据拼音的首字母
 	 */
-	private String sortLetters , name , id ,department;
+	private String sortLetters , name , id , department , machineID;
 	
 	/**
 	 * //性别-true-男
@@ -80,6 +80,9 @@ public class User extends BmobChatUser {
 	}
 	public String getDepartment(){
 		return department;
+	}
+	public String getMachineID(){
+		return machineID;
 	}
 	public String getSortLetters() {
 		return sortLetters;

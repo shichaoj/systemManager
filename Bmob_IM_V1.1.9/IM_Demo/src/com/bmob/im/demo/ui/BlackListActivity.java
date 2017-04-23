@@ -11,7 +11,7 @@ import cn.bmob.im.db.BmobDB;
 import cn.bmob.v3.listener.UpdateListener;
 
 import com.bmob.im.demo.CustomApplcation;
-import com.bmob.im.demo.R;
+import com.bmob.im.demo.manager.R;
 import com.bmob.im.demo.adapter.BlackListAdapter;
 import com.bmob.im.demo.util.CollectionUtils;
 import com.bmob.im.demo.view.HeaderLayout;

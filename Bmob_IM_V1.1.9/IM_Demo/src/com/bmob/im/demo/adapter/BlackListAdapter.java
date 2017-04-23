@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import cn.bmob.im.bean.BmobChatUser;
 
-import com.bmob.im.demo.R;
+import com.bmob.im.demo.manager.R;
 import com.bmob.im.demo.adapter.base.BaseListAdapter;
 import com.bmob.im.demo.adapter.base.ViewHolder;
 import com.bmob.im.demo.util.ImageLoadOptions;

@@ -10,7 +10,7 @@ import cn.bmob.im.bean.BmobMsg;
 import cn.bmob.im.inteface.OnPlayChangeListener;
 import cn.bmob.im.util.BmobLog;
 
-import com.bmob.im.demo.R;
+import com.bmob.im.demo.manager.R;
 
 /**
  * 播放录音文件--弃用，会出现播放错位，暂时还未解决.

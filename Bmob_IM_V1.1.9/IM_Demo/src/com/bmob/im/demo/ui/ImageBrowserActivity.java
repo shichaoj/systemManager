@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
-import com.bmob.im.demo.R;
+import com.bmob.im.demo.manager.R;
 import com.bmob.im.demo.util.ImageLoadOptions;
 import com.bmob.im.demo.view.CustomViewPager;
 import com.nostra13.universalimageloader.core.ImageLoader;

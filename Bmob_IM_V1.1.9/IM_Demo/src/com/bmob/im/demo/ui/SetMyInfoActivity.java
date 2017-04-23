@@ -44,7 +44,7 @@ import cn.bmob.v3.listener.UpdateListener;
 import cn.bmob.v3.listener.UploadFileListener;
 
 import com.bmob.im.demo.CustomApplcation;
-import com.bmob.im.demo.R;
+import com.bmob.im.demo.manager.R;
 import com.bmob.im.demo.bean.Blog;
 import com.bmob.im.demo.bean.User;
 import com.bmob.im.demo.config.BmobConstants;
