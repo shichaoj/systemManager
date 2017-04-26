@@ -72,7 +72,10 @@ public class MessageRecentAdapter extends ArrayAdapter<User> implements Filterab
 		
 		tv_recent_name.setText(user.getName());
 		tv_recent_msg.setText("编号："+user.getMachineID());
-		tv_recent_time.setText("日期："+TimeUtil.getChatTime(item.getTime()));
+		
+		long borrowTime = Long.parseLong(user.getBorrowTime());
+		
+		tv_recent_time.setText("日期："+TimeUtil.getChatTime(borrowTime));
 		//显示内容
 //		if(item.getType()==BmobConfig.TYPE_TEXT){
 //			SpannableString spannableString = FaceTextUtils.toSpannableString(mContext, item.getMessage());

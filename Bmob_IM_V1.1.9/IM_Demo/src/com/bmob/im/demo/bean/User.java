@@ -25,7 +25,7 @@ public class User extends BmobChatUser {
 	/**
 	 * //显示数据拼音的首字母
 	 */
-	private String sortLetters , name , id , department , machineID;
+	private String sortLetters , name , id , department , machineID,borrowTime;
 	
 	/**
 	 * //性别-true-男
@@ -72,6 +72,12 @@ public class User extends BmobChatUser {
 	public void setSex(Boolean sex) {
 		this.sex = sex;
 	}
+	public void setMachineID(String machineID) {
+		this.machineID = machineID;
+	}
+	public void setBorrowTime(String borrowTime){
+		this.borrowTime = borrowTime;
+	}
 	public String getName(){
 		return name;
 	}
@@ -83,6 +89,9 @@ public class User extends BmobChatUser {
 	}
 	public String getMachineID(){
 		return machineID;
+	}
+	public String getBorrowTime(){
+		return borrowTime;
 	}
 	public String getSortLetters() {
 		return sortLetters;

@@ -71,7 +71,7 @@ public class UserFriendAdapter extends BaseAdapter implements SectionIndexer {
 		ViewHolder viewHolder = null;
 		if (convertView == null) {
 			convertView = LayoutInflater.from(ct).inflate(
-					R.layout.item_user_friend, null);
+					R.layout.item_return, null);
 			viewHolder = new ViewHolder();
 			viewHolder.alpha = (TextView) convertView.findViewById(R.id.alpha);
 			viewHolder.name = (TextView) convertView
@@ -79,6 +79,7 @@ public class UserFriendAdapter extends BaseAdapter implements SectionIndexer {
 			viewHolder.avatar = (ImageView) convertView
 					.findViewById(R.id.img_friend_avatar);
 			convertView.setTag(viewHolder);
+			
 		} else {
 			viewHolder = (ViewHolder) convertView.getTag();
 		}

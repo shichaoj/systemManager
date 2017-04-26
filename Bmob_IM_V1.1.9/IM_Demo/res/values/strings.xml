@@ -10,6 +10,7 @@
     <string name="login">登录</string>
     <string name="register">注册</string>
     <string name="renew">续借</string>
+    <string name="returned">归还</string>
     <string name="register_txt1">还没有账号？</string>
     <string name="register_txt2">立即注册 ></string>
     <string name="login_account">账号 </string>

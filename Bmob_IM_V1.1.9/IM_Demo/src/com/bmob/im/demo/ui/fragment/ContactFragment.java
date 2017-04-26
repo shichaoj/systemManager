@@ -174,6 +174,8 @@ public class ContactFragment extends FragmentBase implements OnItemClickListener
 	 * @return
 	 */
 	private void filledData(List<BmobChatUser> datas) {
+		
+		//使用list.clear()方法清空集合，释放内存
 		friends.clear();
 		int total = datas.size();
 		for (int i = 0; i < total; i++) {
@@ -215,8 +217,8 @@ public class ContactFragment extends FragmentBase implements OnItemClickListener
 		list_friends= (ListView)findViewById(R.id.list_friends);
 		RelativeLayout headView = (RelativeLayout) mInflater.inflate(R.layout.include_new_friend, null);
 		iv_msg_tips = (ImageView)headView.findViewById(R.id.iv_msg_tips);
-		layout_new =(LinearLayout)headView.findViewById(R.id.layout_new);
-		layout_near =(LinearLayout)headView.findViewById(R.id.layout_near);
+		//layout_new =(LinearLayout)headView.findViewById(R.id.layout_new);
+		//layout_near =(LinearLayout)headView.findViewById(R.id.layout_near);
 		layout_new.setOnClickListener(new OnClickListener() {
 			
 			@Override

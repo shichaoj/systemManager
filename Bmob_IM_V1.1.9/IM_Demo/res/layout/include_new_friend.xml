@@ -7,7 +7,7 @@
     android:padding="3dp" >
 
     <LinearLayout
-        android:id="@+id/layout_new"
+        android:id="@+id/layout_newB"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
@@ -53,12 +53,12 @@
         android:id="@+id/line"
         android:layout_width="match_parent"
         android:layout_height="@dimen/base_line_width_1"
-        android:layout_below="@id/layout_new"
+        android:layout_below="@id/layout_newB"
         android:background="@drawable/base_horizontal_line" >
     </View>
 
     <LinearLayout
-        android:id="@+id/layout_near"
+        android:id="@+id/layout_nearB"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/line"
