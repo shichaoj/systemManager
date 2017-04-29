@@ -180,6 +180,7 @@ public class ReturnFragment extends FragmentBase implements OnItemClickListener,
 			User sortModel = new User();
 			sortModel.setAvatar(user.getAvatar());
 			sortModel.setNick(user.getNick());
+			sortModel.setIsRenew(user.getIsRenew());
 			sortModel.setUsername(user.getUsername());
 			sortModel.setObjectId(user.getObjectId());
 			sortModel.setContacts(user.getContacts());
@@ -187,6 +188,8 @@ public class ReturnFragment extends FragmentBase implements OnItemClickListener,
 			sortModel.setBorrowTime(user.getBorrowTime());
 			// 汉字转换成拼音
 			String username = sortModel.getUsername();
+			
+			String machineID = sortModel.getMachineID();
 			// 若没有username
 			if (username != null) {
 				String pinyin = characterParser.getSelling(sortModel.getUsername());
@@ -298,6 +301,7 @@ public class ReturnFragment extends FragmentBase implements OnItemClickListener,
 		
 		BmobQuery<User> query = new BmobQuery<User>();
 		query.addWhereNotEqualTo("username", "shichaor");
+		query.addWhereNotEqualTo("machineID", "0");
 		query.findObjects(getActivity(), new FindListener<User>() {
 		  
 			@Override

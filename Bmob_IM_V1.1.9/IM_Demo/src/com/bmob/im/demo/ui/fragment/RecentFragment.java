@@ -62,6 +62,7 @@ public class RecentFragment extends FragmentBase implements OnItemClickListener,
 		
 		BmobQuery<User> query = new BmobQuery<User>();
 		query.addWhereNotEqualTo("username", "shichaor");
+		query.addWhereNotEqualTo("machineID", "0");
 		query.findObjects(getActivity(), new FindListener<User>() {
 		  
 			@Override
@@ -87,7 +88,7 @@ public class RecentFragment extends FragmentBase implements OnItemClickListener,
 					@Override
 					public void onClick() {
 						// TODO Auto-generated method stub
-						//startAnimActivity(AddFriendActivity.class);
+						startAnimActivity(AddFriendActivity.class);
 					}
 				});
 	

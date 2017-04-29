@@ -92,6 +92,7 @@ public class ReturnAdapter extends BaseAdapter implements SectionIndexer {
 		User friend = data.get(position);
 		final String name = friend.getUsername();
 		final String avatar = friend.getAvatar();
+		final Boolean isRenew =  friend.getIsRenew();
 		final String machineID = friend.getMachineID();
 		final Long borrowTime = Long.parseLong(friend.getBorrowTime());
 
@@ -102,7 +103,7 @@ public class ReturnAdapter extends BaseAdapter implements SectionIndexer {
 		}
 		viewHolder.name.setText(name);
 		viewHolder.msg.setText("编号："+machineID);
-		viewHolder.time.setText("日期："+TimeUtil.getReturnTime(borrowTime));
+		viewHolder.time.setText("日期："+TimeUtil.getReturnTime(borrowTime,isRenew));
 
 		// 根据position获取分类的首字母的Char ascii值
 		int section = getSectionForPosition(position);

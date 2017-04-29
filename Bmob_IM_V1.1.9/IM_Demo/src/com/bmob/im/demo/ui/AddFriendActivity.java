@@ -24,7 +24,7 @@ import com.bmob.im.demo.util.CollectionUtils;
 import com.bmob.im.demo.view.xlist.XListView;
 import com.bmob.im.demo.view.xlist.XListView.IXListViewListener;
 
-/** 添加好友
+/** 
   * @ClassName: AddFriendActivity
   * @Description: TODO
   * @author smile
@@ -42,16 +42,16 @@ public class AddFriendActivity extends ActivityBase implements OnClickListener,I
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_add_contact);
+		setContentView(R.layout.activity_add_borrow);
 		initView();
 	}
 	
 	private void initView(){
-		initTopBarForLeft("查找好友");
+		initTopBarForLeft("添加借用信息");
 		et_find_name = (EditText)findViewById(R.id.et_find_name);
 		btn_search = (Button)findViewById(R.id.btn_search);
 		btn_search.setOnClickListener(this);
-		initXListView();
+		//initXListView();
 	}
 
 	private void initXListView() {
