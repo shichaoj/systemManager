@@ -99,7 +99,7 @@ public class RecentFragment extends FragmentBase implements OnItemClickListener,
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before,
 					int count) {
-				adapter.getFilter().filter(s);
+				//adapter.getFilter().filter(s);
 			}
 
 			@Override
@@ -192,8 +192,8 @@ public class RecentFragment extends FragmentBase implements OnItemClickListener,
 		try {
 			getActivity().runOnUiThread(new Runnable() {
 				public void run() {
-					//adapter = new MessageRecentAdapter(getActivity(), R.layout.item_conversation, BmobDB.create(getActivity()).queryRecents());
 					//listview.setAdapter(adapter);
+					initView();
 				}
 			});
 		} catch (Exception e) {

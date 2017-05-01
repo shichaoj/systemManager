@@ -188,8 +188,6 @@ public class ReturnFragment extends FragmentBase implements OnItemClickListener,
 			sortModel.setBorrowTime(user.getBorrowTime());
 			// 汉字转换成拼音
 			String username = sortModel.getUsername();
-			
-			String machineID = sortModel.getMachineID();
 			// 若没有username
 			if (username != null) {
 				String pinyin = characterParser.getSelling(sortModel.getUsername());
@@ -331,7 +329,6 @@ public class ReturnFragment extends FragmentBase implements OnItemClickListener,
 	
 		Map<String,BmobChatUser> users = CustomApplcation.getInstance().getContactList();
 	
-
 	}
 	
 	// 数据传输

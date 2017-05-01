@@ -3,9 +3,13 @@ package com.bmob.im.demo.ui;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -15,11 +19,16 @@ import android.widget.EditText;
 import cn.bmob.im.bean.BmobChatUser;
 import cn.bmob.im.task.BRequest;
 import cn.bmob.im.util.BmobLog;
+import cn.bmob.v3.AsyncCustomEndpoints;
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.listener.CloudCodeListener;
 import cn.bmob.v3.listener.CountListener;
 import cn.bmob.v3.listener.FindListener;
+import cn.bmob.v3.listener.UpdateListener;
 
 import com.bmob.im.demo.manager.R;
 import com.bmob.im.demo.adapter.AddFriendAdapter;
+import com.bmob.im.demo.bean.User;
 import com.bmob.im.demo.util.CollectionUtils;
 import com.bmob.im.demo.view.xlist.XListView;
 import com.bmob.im.demo.view.xlist.XListView.IXListViewListener;
@@ -32,8 +41,8 @@ import com.bmob.im.demo.view.xlist.XListView.IXListViewListener;
   */
 public class AddFriendActivity extends ActivityBase implements OnClickListener,IXListViewListener,OnItemClickListener{
 	
-	EditText et_find_name;
-	Button btn_search;
+	EditText et_find_name , et_machine_id;
+	Button btn_search , btn_submit;
 	
 	List<BmobChatUser> users = new ArrayList<BmobChatUser>();
 	XListView mListView;
@@ -49,8 +58,11 @@ public class AddFriendActivity extends ActivityBase implements OnClickListener,I
 	private void initView(){
 		initTopBarForLeft("添加借用信息");
 		et_find_name = (EditText)findViewById(R.id.et_find_name);
+		et_machine_id = (EditText)findViewById(R.id.et_machine_id);
 		btn_search = (Button)findViewById(R.id.btn_search);
+		btn_submit = (Button)findViewById(R.id.btn_submit);
 		btn_search.setOnClickListener(this);
+		btn_submit.setOnClickListener(this);
 		//initXListView();
 	}
 
@@ -169,26 +181,107 @@ public class AddFriendActivity extends ActivityBase implements OnClickListener,I
 		startAnimActivity(intent);		
 	}
 	
-	String searchName ="";
+	String searchName , machineID ="";
 	@Override
 	public void onClick(View arg0) {
 		// TODO Auto-generated method stub
 		switch (arg0.getId()) {
 		case R.id.btn_search://搜索
-			users.clear();
-			searchName = et_find_name.getText().toString();
-			if(searchName!=null && !searchName.equals("")){
-				initSearchList(false);
+			testUsername(false , null);
+			break;
+		case R.id.btn_submit:			
+			machineID = et_machine_id.getText().toString();
+			if(machineID!=null && !machineID.equals("")){
+				testUsername(true , machineID);
 			}else{
-				ShowToast("请输入用户名");
+				ShowToast("请输入样机编号");
 			}
 			break;
-
 		default:
 			break;
 		}
 	}
+	
+	private void testUsername(final Boolean isSubmit , final String machineID){
+		users.clear();
+		searchName = et_find_name.getText().toString();
+		if(searchName!=null && !searchName.equals("")){
+			queryUsername(searchName , isSubmit , machineID);
+		}else{
+			ShowToast("请输入用户名");
+		}
+	}
+	
+	private void queryUsername(final String username , final Boolean isSubmit , final String machineID){
+		BmobQuery<User> query = new BmobQuery<User>();
+		query.addWhereEqualTo("username", username);
+		query.findObjects(this, new FindListener<User>() {
+			  
+			@Override
+			public void onError(int arg0, String arg1) {
+				// TODO 自动生成的方法存根
+				ShowToast("查询失败");
+			}
 
+			@Override
+			public void onSuccess(List<User> arg0) {
+				// TODO 自动生成的方法存根
+		        //集合为空	
+				if(arg0.size()==0){
+					ShowToast("该用户名不存在");
+				}else{
+					User user = arg0.get(0);
+					String objectID = user.getObjectId();
+					if(user.getMachineID().equals("0")){
+						if(isSubmit){
+							Long currentTime = System.currentTimeMillis() / 1000L ;
+							String borrowTime = currentTime + "";
+							cloudUpdate(borrowTime, machineID , objectID);							
+						}else{
+							ShowToast("该用户无借用信息");
+						}
+					}else{
+						ShowToast("该用户已有借用信息");
+					}
+				}
+			}
+		});
+	}
+	
+	private void cloudUpdate(final String borrowTime , final String machineID , final String objectID){
+		String cloudCodeName = "updateBorrow";
+		JSONObject params = new JSONObject();
+		try {
+			params.put("borrowTime", borrowTime);
+			params.put("machineID", machineID);
+			params.put("objectID", objectID);
+		} catch (JSONException e) {
+			// TODO 自动生成的 catch 块
+			ShowToast("数据处理出错");
+			e.printStackTrace();
+		}
+		
+		//创建云端逻辑对象
+		AsyncCustomEndpoints cloudCode = new AsyncCustomEndpoints();
+		//异步调用云端逻辑
+		cloudCode.callEndpoint(this, cloudCodeName, params, new CloudCodeListener() {
+
+		    //执行成功时调用，返回result对象
+		    @Override
+		    public void onSuccess(Object result) {
+		        Log.i("bmob", "result = "+result.toString());
+		        ShowToast("借用数据提交成功！");
+		    }
+
+			@Override
+			public void onFailure(int arg0, String arg1) {
+				// TODO 自动生成的方法存根
+				ShowToast("上传数据失败！");
+				Log.i("失败原因",arg1);
+			}
+		});
+	}
+	
 	@Override
 	public void onRefresh() {
 		// TODO Auto-generated method stub
