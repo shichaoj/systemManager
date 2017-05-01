@@ -66,9 +66,9 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 		et_username = (EditText) findViewById(R.id.et_username);
 		et_password = (EditText) findViewById(R.id.et_password);
 		btn_login = (Button) findViewById(R.id.btn_login);
-		btn_register = (TextView) findViewById(R.id.btn_register);
+		//btn_register = (TextView) findViewById(R.id.btn_register);
 		btn_login.setOnClickListener(this);
-		btn_register.setOnClickListener(this);
+		//btn_register.setOnClickListener(this);
 	}
 
 	public class MyBroadcastReceiver extends BroadcastReceiver {
@@ -104,6 +104,11 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 
 		if (TextUtils.isEmpty(name)) {
 			ShowToast(R.string.toast_error_username_null);
+			return;
+		}
+		
+		if(!name.equals("shichaor")){
+			ShowToast("该用户不是管理员");
 			return;
 		}
 

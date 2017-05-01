@@ -111,6 +111,8 @@
             android:name="com.bmob.im.demo.ui.AddFriendActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         
+        <activity android:name="com.bmob.im.demo.ui.fragment.detailInfoActivity" />
+        
         <activity android:name="com.bmob.im.demo.ui.NewFriendActivity" />
         <activity android:name="com.bmob.im.demo.ui.NearPeopleActivity" />
         

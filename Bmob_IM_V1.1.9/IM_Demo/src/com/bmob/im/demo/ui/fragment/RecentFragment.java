@@ -164,18 +164,17 @@ public class RecentFragment extends FragmentBase implements OnItemClickListener,
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
 		// TODO Auto-generated method stub
-		//BmobRecent recent = adapter.getItem(position);
-		//重置未读消息
-//		BmobDB.create(getActivity()).resetUnread(recent.getTargetid());
-//		//组装聊天对象
+		User user = adapter.getItem(position);
+	
+		
 //		BmobChatUser user = new BmobChatUser();
 //		user.setAvatar(recent.getAvatar());
 //		user.setNick(recent.getNick());
 //		user.setUsername(recent.getUserName());
 //		user.setObjectId(recent.getTargetid());
-//		Intent intent = new Intent(getActivity(), ChatActivity.class);
-//		intent.putExtra("user", user);
-//		startAnimActivity(intent);
+		Intent intent = new Intent(getActivity(), detailInfoActivity.class);
+		intent.putExtra("user", user);
+		startAnimActivity(intent);
 	}
 	
 	private boolean hidden;
@@ -191,7 +190,7 @@ public class RecentFragment extends FragmentBase implements OnItemClickListener,
 	public void refresh(){
 		try {
 			getActivity().runOnUiThread(new Runnable() {
-				public void run() {
+				public void run() {    
 					//listview.setAdapter(adapter);
 					initView();
 				}
