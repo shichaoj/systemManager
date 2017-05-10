@@ -8,6 +8,7 @@ import org.json.JSONObject;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -42,11 +43,14 @@ import com.bmob.im.demo.view.xlist.XListView.IXListViewListener;
 public class AddFriendActivity extends ActivityBase implements OnClickListener,IXListViewListener,OnItemClickListener{
 	
 	EditText et_find_name , et_machine_id;
-	Button btn_search , btn_submit;
+	Button btn_search , btn_submit , btn_scan;
 	
 	List<BmobChatUser> users = new ArrayList<BmobChatUser>();
 	XListView mListView;
 	AddFriendAdapter adapter;
+	
+	private final static int SCANNIN_GREQUEST_CODE = 1;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -61,7 +65,9 @@ public class AddFriendActivity extends ActivityBase implements OnClickListener,I
 		et_machine_id = (EditText)findViewById(R.id.et_machine_id);
 		btn_search = (Button)findViewById(R.id.btn_search);
 		btn_submit = (Button)findViewById(R.id.btn_submit);
+		btn_scan = (Button)findViewById(R.id.btn_scan);
 		btn_search.setOnClickListener(this);
+		btn_scan.setOnClickListener(this);
 		btn_submit.setOnClickListener(this);
 		//initXListView();
 	}
@@ -197,6 +203,12 @@ public class AddFriendActivity extends ActivityBase implements OnClickListener,I
 				ShowToast("请输入样机编号");
 			}
 			break;
+		case R.id.btn_scan:
+			Intent intent = new Intent();
+			intent.setClass(this, MipcaActivityCapture.class);
+			intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			startActivityForResult(intent, SCANNIN_GREQUEST_CODE);			
+			break;
 		default:
 			break;
 		}
@@ -327,5 +339,19 @@ public class AddFriendActivity extends ActivityBase implements OnClickListener,I
 		}
 	}
 	
+	@Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+		case SCANNIN_GREQUEST_CODE:
+			if(resultCode == RESULT_OK){
+				Bundle bundle = data.getExtras();
+				//显示扫描到的内容
+				et_machine_id.setText(bundle.getString("result"));
+
+			}
+			break;
+		}
+    }	
 
 }
